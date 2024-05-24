@@ -51,9 +51,6 @@ Saverville combines the joy of farming simulation games with the real-world bene
 - **Financial Returns**: Harvested crops yield financial returns, making your in-game efforts rewarding in the real world.
 - **User-Friendly Interface**: Intuitive and colorful design to enhance your farming experience.
 
-Join us in Saverville and start growing your farm today!
-
-![Saverville Farm](path_to_your_image/saverville.png)
 
 
 
