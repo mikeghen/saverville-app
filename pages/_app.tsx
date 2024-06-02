@@ -16,8 +16,10 @@ const { NEXT_PUBLIC_ALCHEMY_ID, NEXT_PUBLIC_INFURA_ID, NEXT_PUBLIC_ETHERSCAN_API
 const alchemyId = NEXT_PUBLIC_ALCHEMY_ID
 const etherscanApiKey = NEXT_PUBLIC_ETHERSCAN_API_KEY
 
+console.log("Chain Localhost", chain.localhost)
+
 const { chains, provider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum, chain.localhost],
+  [chain.localhost],
   [alchemyProvider({ apiKey: alchemyId }), publicProvider()],
 )
 const { connectors } = getDefaultWallets({
