@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Image, Text } from '@chakra-ui/react';
 import { formatDistanceToNow } from 'date-fns';
 
-const FarmPlot = ({ plot, index, onClick }) => {
+const FarmPlot = ({ plot, index, onClick }: { plot: any, index: number, onClick: (index: number) => void }) => {
   const [timeLeft, setTimeLeft] = useState('');
 
   useEffect(() => {

@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Toaster } from 'react-hot-toast'
 
 import { ENSSection, TxStatesSection, GMModeSection, WalletConnectSection } from '../components/web3FeatureSections'
-import AdminPanel from '../components/adminPanel'
 import Navbar from '../components/navbar'
 import Saverville from '../components/saverville'
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
@@ -33,12 +32,6 @@ const Home: NextPage = () => {
       <Toaster />
       <Navbar />
 
-
-      {/* <div className="flex mt-4 space-x-3">
-        <div className="flex justify-center mt-8  max-w-4xl m-auto">
-          <AdminPanel />
-        </div>
-      </div> */}
 
       {/* <a
         href="https://github.com/iMuzz/web3-starter"

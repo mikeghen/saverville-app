@@ -3,13 +3,13 @@ import { Container, Button, VStack, Text, Box, Image, useToast, SimpleGrid, HSta
 import { useAccount, useConnect, useBalance } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { buySeeds, plantSeeds, waterSeeds, harvestPlant } from '../utils/ethereum';
-import FarmPlot from './FarmPlot';
+import FarmPlot from './farmPlot';
 
 const Saverville = () => {
     const [isMounted, setIsMounted] = useState(false);
     const [seeds, setSeeds] = useState(0);
     const [plants, setPlants] = useState(0);
-    const [farmGrid, setFarmGrid] = useState(Array.from({ length: 100 }, () => ({ state: 'empty' })));
+    const [farmGrid, setFarmGrid] = useState(Array.from({ length: 100 }, () => ({ state: 'empty', id: 0, image: '' })));
     const [mode, setMode] = useState('planting');
     const [seedQuantity, setSeedQuantity] = useState(1); // New state for seed quantity
     const seedPrice = 1; // Example price for each seed
@@ -53,7 +53,7 @@ const Saverville = () => {
                 duration: 2000,
                 isClosable: true,
             });
-        } catch (error) {
+        } catch (error: any) {
             toast({
                 title: 'Transaction failed',
                 description: error.message,
@@ -64,7 +64,7 @@ const Saverville = () => {
         }
     };
 
-    const handlePlantSeeds = async (index) => {
+    const handlePlantSeeds = async (index: any) => {
         if (seeds > 0 && farmGrid[index].state === 'empty') {
             try {
                 await plantSeeds(index);
@@ -79,7 +79,7 @@ const Saverville = () => {
                     duration: 2000,
                     isClosable: true,
                 });
-            } catch (error) {
+            } catch (error: any) {
                 toast({
                     title: 'Transaction failed',
                     description: error.message,
@@ -98,7 +98,7 @@ const Saverville = () => {
         }
     };
 
-    const handleWaterSeeds = async (index) => {
+    const handleWaterSeeds = async (index: any) => {
         if (farmGrid[index].state === 'seeded') {
             try {
                 await waterSeeds(index);
@@ -143,7 +143,7 @@ const Saverville = () => {
                     });
                 }, 9000);
 
-            } catch (error) {
+            } catch (error: any) {
                 toast({
                     title: 'Transaction failed',
                     description: error.message,
@@ -155,12 +155,12 @@ const Saverville = () => {
         }
     };
 
-    const handleHarvest = async (index) => {
+    const handleHarvest = async (index: any) => {
         if (farmGrid[index].state === 'mature' || farmGrid[index].state === 'growing') {
             try {
                 await harvestPlant(index);
                 const newGrid = [...farmGrid];
-                newGrid[index] = { state: 'empty' };
+                newGrid[index] = { state: 'empty', id: 0, image: ''};
                 setFarmGrid(newGrid);
                 const earnings = seedPrice * 1.05;
                 setPlants((prevPlants) => prevPlants + 1);
@@ -171,7 +171,7 @@ const Saverville = () => {
                     duration: 2000,
                     isClosable: true,
                 });
-            } catch (error) {
+            } catch (error: any) {
                 toast({
                     title: 'Transaction failed',
                     description: error.message,
@@ -183,7 +183,7 @@ const Saverville = () => {
         }
     };
 
-    const handleGridClick = (index) => {
+    const handleGridClick = (index: any) => {
         switch (mode) {
             case 'planting':
                 handlePlantSeeds(index);
@@ -266,7 +266,7 @@ const Saverville = () => {
                             key={index}
                             plot={cell}
                             index={index}
-                            owner={address}
+                            // owner={address}
                             onClick={handleGridClick}
                         />
                     ))}
